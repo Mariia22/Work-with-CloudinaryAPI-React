@@ -7,8 +7,16 @@ const { json } = require('body-parser');
 const app = express();
 app.use(cors());
 app.use(json());
-app.get('/photos', async (request, response) => {
-  return response.send({ message: 'hello' })
+
+const { parsed: config } = dotenv.config();
+const BASE_URL = `https://api.cloudinary.com/v1_1/${config.CLOUD_NAME}`;
+const auth = {
+  username: config.API_KEY,
+  password: config.API_SECRET,
+};
+app.get('/photos', async (req, res) => {
+  const response = await axios.get(BASE_URL + '/resources/image', { auth })
+  return res.send(response.data)
 });
 
 const PORT = 7000;
