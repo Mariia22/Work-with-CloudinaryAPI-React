@@ -15,7 +15,12 @@ const auth = {
   password: config.API_SECRET,
 };
 app.get('/photos', async (req, res) => {
-  const response = await axios.get(BASE_URL + '/resources/image', { auth })
+  const response = await axios.get(BASE_URL + '/resources/image', {
+    auth,
+    params: {
+      next_cursor: req.query.next_cursor,
+    },
+  })
   return res.send(response.data)
 });
 
