@@ -13,6 +13,7 @@ function App() {
     }
     fetchData();
   }, []);
+
   const handleClickLoadMore = async () => {
     const responseJson = await getImages(nextCursor);
     setImageList((currentImageList) => [...currentImageList, ...responseJson.resources]);

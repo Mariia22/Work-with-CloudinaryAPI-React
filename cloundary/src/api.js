@@ -5,7 +5,7 @@ export const getImages = async (nextCursor) => {
   if (nextCursor) {
     params.append('next_cursor', nextCursor)
   }
-  const response = await fetch(`${API_URL}/photos`);
+  const response = await fetch(`${API_URL}/photos?${params}`);
   const json = await response.json();
   return json;
 }
