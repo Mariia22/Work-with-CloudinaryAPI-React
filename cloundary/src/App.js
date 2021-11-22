@@ -21,12 +21,19 @@ function App() {
   }
   return (
     <>
+      <form>
+        <input type='text' />
+        <button>Search</button>
+        <button>Clear</button>
+      </form>
       <div className="container">
         {imageList.map(image => <img src={image.url} alt={image.public_id} />)}
       </div>
       <div className="footer"> {nextCursor && <button onClick={handleClickLoadMore}>Load More</button>}</div>
     </>
   );
+
 }
+
 
 export default App;
